@@ -18,10 +18,14 @@ const newDistance =startingDistance + (initialVelocity*(durationOfCalculation/36
 const remainingFuel = initialFuel- (fuelBurnRate*durationOfCalculation) //calculates remaining fuel
 const newVelocity = calcNewVel(acceleration, initialVelocity, durationOfCalculation) //calculates new velocity based on acceleration
 
-// Pick up an error with how the function below is called and make it robust to such errors
+// Pick up an error with how the function below is called and make it robust to such errors  
+
 function calcNewVel(props) {  // pass in object
-  const {acceleration, initialVelocity, durationOfCalculation} = props
-  
+  const {acceleration, initialVelocity, durationOfCalculation} = props; // destructure obj
+
+  if(!acceleration) throw new Error('');
+  if(!initialVelocity) throw new Error('');                     //hanlde errors
+  if(!durationOfCalculation) throw new Error('');
   //return vel + (acc* time* CONVERSION_RATE)  // use conversion rate to change m/s to km/h
 }
 
