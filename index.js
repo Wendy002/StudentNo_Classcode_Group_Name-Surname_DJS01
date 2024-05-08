@@ -14,9 +14,9 @@ const initialFuel = 5000; // The starting amount of fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
 
-const newDistance = d + (vel*time) //calculates new distance
-const remainingFuel = fbr*time //calculates remaining fuel
-const newVelocity = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+const newDistance =startingDistance + (initialVelocity*durationOfCalculation) //calculates new distance
+const remainingFuel = fuelBurnRate*durationOfCalculation //calculates remaining fuel
+const newVelocity = calcNewVel(acceleration, initialFuel, durationOfCalculation) //calculates new velocity based on acceleration
 
 // Pick up an error with how the function below is called and make it robust to such errors
 calcNewVel = (vel, acc, time) => { 
