@@ -19,8 +19,10 @@ const remainingFuel = initialFuel- (fuelBurnRate*durationOfCalculation) //calcul
 const newVelocity = calcNewVel(acceleration, initialVelocity, durationOfCalculation) //calculates new velocity based on acceleration
 
 // Pick up an error with how the function below is called and make it robust to such errors
-function calcNewVel(acc, vel, time) { 
-  return vel + (acc*time* CONVERSION_RATE)  // use conversion rate to change m/s to km/h
+function calcNewVel(props) {  // pass in object
+  const {acceleration, initialVelocity, durationOfCalculation} = props
+  
+  //return vel + (acc* time* CONVERSION_RATE)  // use conversion rate to change m/s to km/h
 }
 
 console.log(`Corrected New Velocity: ${newVelocity} km/h`);
