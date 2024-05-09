@@ -47,6 +47,9 @@ try {
 // Pick up an error with how the function below is called and make it robust to such errors  
 
 function calcNewVel(props) {  // pass in object
+  if (!props || typeof props !== 'object') {
+    throw new Error('Invalid input: props must be an object');
+  }
 
   
   const {acceleration, initialVelocity, durationOfCalculation} = props; // destructure obj
