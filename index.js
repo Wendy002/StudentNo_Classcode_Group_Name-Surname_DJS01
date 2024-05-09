@@ -50,10 +50,12 @@ function calcNewVel(props) {  // pass in object
   if (!props || typeof props !== 'object') {
     throw new Error('Invalid input: props must be an object');
   }
-
-  
   const {acceleration, initialVelocity, durationOfCalculation} = props; // destructure obj
 
+   // Handle error for all the above variables
+   if (typeof acceleration !== 'number' || typeof initialVelocity !== 'number' || typeof durationOfCalculation !== 'number') {
+    throw new Error('Invalid input: acceleration, initialVelocity, and durationOfCalculation must be numbers');
+  }
 
   return initialVelocity + (acceleration * durationOfCalculation * CONVERSION_RATE);  // use conversion rate to change m/s to km/h
 }
