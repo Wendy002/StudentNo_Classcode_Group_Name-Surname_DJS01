@@ -7,7 +7,7 @@
  * @param {number} props.initialVelocity in km/h
  * @param {number} props.accelaration - in m/s^2
  * @param {number} props.durationOfCalculation - in seconds
- * @returns {number}- in km/h
+ * @returns {number} - in km/h
  * 
  */
 
@@ -21,25 +21,41 @@ const initialFuel = 5000; // The starting amount of fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
 
-const newDistance =startingDistance + (initialVelocity*(durationOfCalculation/3600)) //calculates new distance --- cnverts sec to hour
-const remainingFuel = initialFuel- (fuelBurnRate*durationOfCalculation) //calculates remaining fuel
-const newVelocity = calcNewVel(acceleration, initialVelocity, durationOfCalculation) //calculates new velocity based on acceleration
+
+//trycatch block
+try {
+  const props = {
+    acceleration,
+    initialVelocity,             // create an object 
+    durationOfCalculation
+  };
+  const newDistance = startingDistance + (initialVelocity*(durationOfCalculation/3600)) //calculates new distance --- cnverts sec to hour
+  const remainingFuel = initialFuel- (fuelBurnRate *durationOfCalculation) //calculates remaining fuel
+  const newVelocity = calcNewVel(props) //calculates new velocity based on acceleration
+
+  console.log(`Corrected New Velocity: ${newVelocity} km/h`);
+  console.log(`Corrected New Distance: ${newDistance} km`);
+  console.log(`Corrected Remaining Fuel: ${remainingFuel} kg`);
+
+  
+} catch (error) {
+  console.error("An error occurred: ", error);
+
+}
+
 
 // Pick up an error with how the function below is called and make it robust to such errors  
 
 function calcNewVel(props) {  // pass in object
+
+  
   const {acceleration, initialVelocity, durationOfCalculation} = props; // destructure obj
 
-  if(!acceleration) throw new Error('accelaration is required in m/s^2');
-  if(!initialVelocity) throw new Error('reference velocity is required in km/h');                     //hanlde errors
-  if(!durationOfCalculation) throw new Error('duration of calculation in seconds');
 
-  return initialFuel + (acceleration* durationOfCalculation * CONVERSION_RATE)  // use conversion rate to change m/s to km/h
+  return initialVelocity + (acceleration * durationOfCalculation * CONVERSION_RATE);  // use conversion rate to change m/s to km/h
 }
 
-console.log(`Corrected New Velocity: ${newVelocity} km/h`);
-console.log(`Corrected New Distance: ${newDistance} km`);
-console.log(`Corrected Remaining Fuel: ${remainingFuel} kg`);
+
 
 
 
